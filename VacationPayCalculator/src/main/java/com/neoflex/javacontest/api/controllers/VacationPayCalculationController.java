@@ -27,8 +27,8 @@ public class VacationPayCalculationController {
     // Контракт указан в ТЗ - GET "/calculacte" - перенаправляем на правильный
     @GetMapping("/calculacte")
     public BigDecimal calculacte(
-            @RequestParam @DecimalMin("1.00") BigDecimal averageSalary,
-            @RequestParam @Min(1) Integer vacationDays,
+            @RequestParam @DecimalMin(value = "1.00", message = "Средняя з/п не может быть отрицательной или нулевой") BigDecimal averageSalary,
+            @RequestParam @Min(value = 1, message = "Дней отпуска должно быть не меньше 1") Integer vacationDays,
             @RequestParam(required = false)
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate) {
 
@@ -38,10 +38,13 @@ public class VacationPayCalculationController {
 
     @GetMapping("/calculate")
     public BigDecimal calculate(
-            @RequestParam @DecimalMin("1.00") BigDecimal averageSalary,
-            @RequestParam @Min(1) Integer vacationDays,
+            @RequestParam @DecimalMin(value = "1.00", message = "Средняя з/п не может быть отрицательной или нулевой")
+                BigDecimal averageSalary,
+            @RequestParam @Min(value = 1, message = "Дней отпуска должно быть не меньше 1")
+                Integer vacationDays,
             @RequestParam(required = false)
-            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate) {
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+                LocalDate startDate) {
 
         log.info("Запрос на расчет отпускных: salary={}, days={}, startDate={}",
                 averageSalary, vacationDays, startDate);

@@ -23,7 +23,6 @@ public class GlobalExceptionHandler {
                 .stream()
                 .map(ConstraintViolation::getMessage)
                 .collect(Collectors.toList());
-
         return new ErrorResponse("Ошибка валидации параметров", details);
     }
 
