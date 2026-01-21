@@ -36,12 +36,11 @@ public class AllowanceCalculationController {
             @RequestParam(required = false) LocalDate startDate,
             @RequestParam(required = false) LocalDate endDate) {
 
-        log.info(
-                (startDate == null || endDate == null)
-                        ? "Параметры запроса/ Зарплата : {} Дней отпуска : {}"
-                        : "Параметры запроса/ Зарплата : {} Дней отпуска : {} С:{} По:{}",
-                averageSalary, vacationDays, startDate, endDate
-        );
-        return service.calculate(averageSalary, vacationDays, startDate, endDate);
+        log.info("Запрос на расчет отпускных: salary={}, days={}, startDate={}, endDate={}",
+                averageSalary, vacationDays, startDate, endDate);
+
+        double result = service.calculate(averageSalary, vacationDays, startDate, endDate);
+        log.info("Отправлен результат расчета: result={}", result);
+        return result;
     }
 }
