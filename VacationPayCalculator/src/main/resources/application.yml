@@ -16,8 +16,8 @@ calendar:
     - "2024-11-04"
   average-days-in-month: 29.3
 
-  # При добавлении параметра weekends вида:
-  # weekends:
+  # При добавлении параметра nonWorkingDays вида:
+  # nonWorkingDays:
   #    - 2026-01-10
   #    - 2026-01-11
   #    - 2026-01-15
